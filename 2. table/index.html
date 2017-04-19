@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS 揭秘</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="Lib/jquery-1.12.4.min.js"></script>
+    <script src="Lib/handlebars-1.0.rc.1.min.js"></script>
+</head>
+<body>
+
+<table class="nav">
+    <tr>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>升高</th>
+    </tr>
+</table>
+
+<script id="person" type="text/x-handlebars-template">
+    <thead>
+    {{! 在这其中的注释表达式不会被输出 }}
+        <tr>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>升高</th>
+        </tr>
+    </thead>
+    <tbody>
+    {{#each info}}
+        <tr>
+        {{! 为什么不可以使用 info.name??? }}
+            <td>{{name}}</td>
+            <td>{{age}}</td>
+            <td>{{hight}}</td>
+        </tr>
+    {{/each}}
+    {{#each info2}}
+        <tr>
+        {{! 为什么不可以使用 info.name??? }}
+            <td>{{name}}</td>
+            <td>{{age}}</td>
+            <td>{{hight}}</td>
+        </tr>
+    {{/each}}
+    </tbody>
+</script>
+
+<script>
+    $(function () {
+        var data = {
+            info: [
+                {
+                    name: 'cs',
+                    age: 26,
+                    hight: 187
+                },
+                {
+                    name: 'juanjuan',
+                    age: 24,
+                    hight: 165
+                }
+            ],
+            info2: [
+                {
+                    name: 'cs2',
+                    age: 26,
+                    hight: 187
+                },
+                {
+                    name: 'juanjuan2',
+                    age: 24,
+                    hight: 165
+                }
+            ]
+        };
+        var theTemplate = Handlebars.compile($("#person").html());
+        $(".nav").append(theTemplate(data));
+    });
+</script>
+
+</body>
+</html>

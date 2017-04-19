@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS 揭秘</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="Lib/jquery-1.12.4.min.js"></script>
+    <script src="Lib/handlebars-1.0.rc.1.min.js"></script>
+</head>
+<body>
+
+<div class="container"></div>
+
+<script id="sign" type="text/x-handlebars-template">
+    {{#users}}
+       <li>{{name.firstName}} {{name.lastName}} is in the {{../groupName}} group.</li>
+       {{/users}}
+</script>
+
+<script>
+    var shoesData = {
+            groupName:"Celebrities",
+            users:[
+                    {name:{firstName:"Mike", lastName:"Alexander" }},
+                    {name:{firstName:"John", lastName:"Waters" }}
+                ]
+            };
+
+    var myTemplate = Handlebars.compile($("#sign").html());
+    $(".container").append(myTemplate(shoesData));
+</script>
+
+</body>
+</html>

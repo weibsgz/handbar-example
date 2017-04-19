@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS 揭秘</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="Lib/jquery-1.12.4.min.js"></script>
+    <script src="Lib/handlebars-1.0.rc.1.min.js"></script>
+</head>
+<body>
+
+<!-- 例1，data 为 数组对象 -->
+<ul class="shoesNav"></ul>
+
+<script id="header" type="text/x-handlebars-template">
+     {{#customers}}
+        <li> {{ firstName }} {{ lastName }} </li>
+     {{/customers}}
+</script>
+
+<script>
+$(function () {
+    var theData = {
+            customers:[
+                {firstName:"Michael", lastName:"Alexander", age:20},
+                {firstName:"John", lastName:"Allen", age:29}]
+        };
+
+    var theTemplateScript = $("#header").html();
+    var theTemplate = Handlebars.compile (theTemplateScript);
+    $(".shoesNav").append(theTemplate(theData));
+});
+</script>
+
+<!-- 例2 data为字符串-->
+<div class="li2"></div>
+<script id="header22" type="text/x-handlebars-template">
+ <div> {{headerTitle}} </div>
+ <p>Today is {{weekDay}}</p>
+</script>
+
+<script>
+    var theData2 = {
+            headerTitle:"Shop Page",
+            weekDay:"Wednesday"
+        };
+    var theTemplateScript2 = $("#header22").html();
+    var theTemplate2 = Handlebars.compile (theTemplateScript2);
+    $(".shoesNav").append(theTemplate2(theData2));
+</script>
+
+</body>
+</html>
